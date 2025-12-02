@@ -1,0 +1,75 @@
+name: Deploy to GitHub Pages
+
+# Quando executar este workflow
+on:
+  # Executar quando houver push na branch main
+  push:
+    branches: [ main ]
+  
+  # Permitir execução manual do workflow
+  workflow_dispatch:
+
+# Permissões necessárias para publicar no GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evitar execuções simultâneas
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Job de build e deploy
+  deploy:
+    name: Build e Deploy
+    runs-on: ubuntu-latest
+    
+    # Configuração do ambiente GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      # 1. Fazer checkout do código
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+      
+      # 2. Injetar o CLIENT_ID no código
+      - name: Injetar Client ID
+        run: |
+          echo "🔐 Injetando CLIENT_ID no app.js..."
+          sed -i "s/YOUR_CLIENT_ID_HERE/${{ secrets.SPOTIFY_CLIENT_ID }}/g" app.js
+          echo "✅ CLIENT_ID injetado com sucesso!"
+      
+      # 3. Verificar se a injeção funcionou (sem expor o valor)
+      - name: Verificar injeção
+        run: |
+          if grep -q "YOUR_CLIENT_ID_HERE" app.js; then
+            echo "❌ ERRO: CLIENT_ID não foi injetado!"
+            exit 1
+          else
+            echo "✅ CLIENT_ID foi injetado corretamente"
+          fi
+      
+      # 4. Configurar GitHub Pages
+      - name: Configurar Pages
+        uses: actions/configure-pages@v4
+      
+      # 5. Fazer upload dos arquivos
+      - name: Upload dos artefatos
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      
+      # 6. Deploy para GitHub Pages
+      - name: Deploy para GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      
+      # 7. Mostrar URL final
+      - name: Mostrar URL
+        run: |
+          echo "🚀 Deploy concluído!"
+          echo "📍 URL: ${{ steps.deployment.outputs.page_url }}"
