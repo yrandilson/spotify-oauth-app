@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify OAuth Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Tela de Login (mostrada quando não está autenticado) -->
+    <div id="login-screen" class="screen">
+        <div class="login-container">
+            <h1>🎵 Spotify OAuth Player</h1>
+            <p>Controle sua música do Spotify de forma segura</p>
+            
+            <div class="profile-selector">
+                <h3>Escolha seu perfil:</h3>
+                <div class="profile-options">
+                    <label class="profile-option">
+                        <input type="radio" name="profile" value="viewer" checked>
+                        <div class="profile-card">
+                            <h4>👁️ Viewer</h4>
+                            <p>Apenas visualizar</p>
+                            <small>Ver o que está tocando</small>
+                        </div>
+                    </label>
+                    <label class="profile-option">
+                        <input type="radio" name="profile" value="manager">
+                        <div class="profile-card">
+                            <h4>🎮 Manager</h4>
+                            <p>Controle total</p>
+                            <small>Ver e controlar playback</small>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <button id="login-btn" class="btn btn-primary">
+                Entrar com Spotify
+            </button>
+            
+            <div class="security-info">
+                <p>🔒 Conexão segura com OAuth 2.0 e PKCE</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard (mostrada quando está autenticado) -->
+    <div id="dashboard" class="screen hidden">
+        <div class="dashboard-header">
+            <h1>🎵 Spotify Player</h1>
+            <div class="user-info">
+                <span id="user-profile-type"></span>
+                <button id="logout-btn" class="btn btn-secondary">Sair</button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Card de Informações da Música (todos os perfis) -->
+            <div class="card">
+                <h2>📻 Tocando Agora</h2>
+                <div id="current-track" class="track-info">
+                    <p class="loading">Carregando...</p>
+                </div>
+                <button id="refresh-btn" class="btn btn-small">🔄 Atualizar</button>
+            </div>
+
+            <!-- Controles (apenas para Manager) -->
+            <div id="controls-section" class="card hidden">
+                <h2>🎮 Controles</h2>
+                <p class="info-text">Use os botões abaixo para controlar sua música</p>
+                <div class="controls">
+                    <button id="previous-btn" class="btn btn-control">⏮️ Anterior</button>
+                    <button id="play-pause-btn" class="btn btn-control btn-large">▶️ Play</button>
+                    <button id="next-btn" class="btn btn-control">⏭️ Próxima</button>
+                </div>
+                <div class="premium-notice">
+                    <small>⚠️ Requer Spotify Premium para funcionar</small>
+                </div>
+            </div>
+
+            <!-- Informações de Segurança -->
+            <div class="card security-card">
+                <h3>🔐 Informações de Segurança</h3>
+                <ul>
+                    <li>✅ Autenticação via OAuth 2.0</li>
+                    <li>✅ Proteção PKCE ativada</li>
+                    <li>✅ Token armazenado de forma segura</li>
+                    <li>✅ Proteção contra CSRF</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensagens de Erro -->
+    <div id="error-message" class="error-banner hidden">
+        <span id="error-text"></span>
+        <button onclick="hideError()">✕</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

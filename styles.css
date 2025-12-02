@@ -1,0 +1,507 @@
+/* ============================================
+   RESET E VARIÁVEIS
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+    --spotify-dark: #121212;
+    --spotify-gray: #282828;
+    --spotify-light-gray: #b3b3b3;
+    --white: #ffffff;
+    --error-red: #e74c3c;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   ESTILOS GLOBAIS
+   ============================================ */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--spotify-dark) 0%, var(--spotify-black) 100%);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.screen {
+    width: 100%;
+    max-width: 900px;
+    animation: fadeIn 0.5s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   TELA DE LOGIN
+   ============================================ */
+
+.login-container {
+    background: var(--spotify-gray);
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 40px var(--shadow);
+}
+
+.login-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: var(--spotify-green);
+}
+
+.login-container p {
+    color: var(--spotify-light-gray);
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+/* Seletor de Perfil */
+.profile-selector {
+    margin: 30px 0;
+}
+
+.profile-selector h3 {
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.profile-options {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.profile-option {
+    cursor: pointer;
+}
+
+.profile-option input[type="radio"] {
+    display: none;
+}
+
+.profile-card {
+    background: var(--spotify-dark);
+    padding: 25px;
+    border-radius: 15px;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.profile-card h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.profile-card p {
+    color: var(--spotify-light-gray);
+    margin-bottom: 5px;
+}
+
+.profile-card small {
+    color: var(--spotify-light-gray);
+    font-size: 0.9em;
+}
+
+.profile-option input[type="radio"]:checked + .profile-card {
+    border-color: var(--spotify-green);
+    background: rgba(29, 185, 84, 0.1);
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px var(--shadow);
+}
+
+/* Informações de Segurança */
+.security-info {
+    margin-top: 30px;
+    padding: 15px;
+    background: rgba(29, 185, 84, 0.1);
+    border-radius: 10px;
+    border: 1px solid var(--spotify-green);
+}
+
+.security-info p {
+    color: var(--spotify-green);
+    margin: 0;
+    font-size: 0.95em;
+}
+
+/* ============================================
+   DASHBOARD
+   ============================================ */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--spotify-gray);
+    border-radius: 15px;
+}
+
+.dashboard-header h1 {
+    font-size: 2em;
+    color: var(--spotify-green);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info span {
+    padding: 8px 15px;
+    background: var(--spotify-dark);
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cards */
+.card {
+    background: var(--spotify-gray);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow);
+}
+
+.card h2 {
+    color: var(--spotify-green);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.card h3 {
+    color: var(--spotify-green);
+    margin-bottom: 15px;
+}
+
+/* Informações da Música */
+.track-info {
+    min-height: 100px;
+}
+
+.track-details {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.album-cover {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.track-text h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: var(--white);
+}
+
+.track-text .artist {
+    font-size: 1.2em;
+    color: var(--spotify-light-gray);
+    margin-bottom: 5px;
+}
+
+.track-text .album {
+    color: var(--spotify-light-gray);
+    margin-bottom: 10px;
+}
+
+.track-text .status {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.track-text .status.playing {
+    background: rgba(29, 185, 84, 0.2);
+    color: var(--spotify-green);
+}
+
+.track-text .status.paused {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--spotify-light-gray);
+}
+
+.loading {
+    color: var(--spotify-light-gray);
+    font-style: italic;
+}
+
+.no-track {
+    color: var(--spotify-light-gray);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.hint {
+    color: var(--spotify-light-gray);
+    font-size: 0.9em;
+}
+
+/* Controles */
+.info-text {
+    color: var(--spotify-light-gray);
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.premium-notice {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.premium-notice small {
+    color: var(--spotify-light-gray);
+}
+
+/* Card de Segurança */
+.security-card {
+    background: rgba(29, 185, 84, 0.05);
+    border: 1px solid var(--spotify-green);
+}
+
+.security-card ul {
+    list-style: none;
+}
+
+.security-card li {
+    padding: 10px 0;
+    color: var(--spotify-light-gray);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.security-card li:last-child {
+    border-bottom: none;
+}
+
+/* ============================================
+   BOTÕES
+   ============================================ */
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: var(--spotify-green);
+    color: var(--white);
+    padding: 18px 40px;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background: #1ed760;
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+    padding: 10px 20px;
+    font-size: 0.9em;
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--spotify-black);
+}
+
+.btn-small {
+    padding: 10px 20px;
+    font-size: 0.9em;
+    background: var(--spotify-dark);
+    color: var(--white);
+    margin-top: 15px;
+}
+
+.btn-small:hover {
+    background: var(--spotify-green);
+}
+
+.btn-control {
+    background: var(--spotify-green);
+    color: var(--white);
+    padding: 15px 25px;
+    font-size: 1.1em;
+}
+
+.btn-control:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(29, 185, 84, 0.4);
+}
+
+.btn-large {
+    padding: 20px 40px;
+    font-size: 1.3em;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   MENSAGENS DE ERRO
+   ============================================ */
+
+.error-banner {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--error-red);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+    max-width: 90%;
+}
+
+.error-banner button {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.error-banner button:hover {
+    transform: scale(1.2);
+}
+
+/* ============================================
+   ANIMAÇÕES
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+    
+    .login-container h1 {
+        font-size: 2em;
+    }
+    
+    .profile-options {
+        flex-direction: column;
+    }
+    
+    .track-details {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .album-cover {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .controls {
+        flex-direction: column;
+    }
+    
+    .btn-control {
+        width: 100%;
+    }
+    
+    .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        width: 100%;
+    }
+}
