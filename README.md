@@ -280,7 +280,7 @@ PKCE (Proof Key for Code Exchange) adiciona segurança extra para aplicações p
 
 ## 10. Checklist Final
 
-Antes de gravar o vídeo, certifique-se:
+
 
 - [ ] Aplicação criada no Spotify Developer Dashboard
 - [ ] Client ID copiado
@@ -321,31 +321,6 @@ git push -u origin main
 
 ---
 
-## 12. Dicas para o Vídeo
-
-### Introdução (2 min)
-- Apresentar o projeto
-- Explicar o que é OAuth 2.0
-- Mostrar o resultado final funcionando
-
-### Desenvolvimento (15 min)
-- Criar app no Spotify (3 min)
-- Configurar GitHub (3 min)
-- Explicar código principal (5 min)
-- Configurar GitHub Actions (4 min)
-
-### Demonstração (5 min)
-- Fazer login como Viewer
-- Fazer login como Manager
-- Mostrar chamadas à API
-- Testar logout
-
-### Conclusão (2 min)
-- Recapitular conceitos de segurança
-- Mencionar boas práticas
-- Agradecer
-
----
 
 ## Recursos Adicionais
 
@@ -355,6 +330,6 @@ git push -u origin main
 
 ---
 
-**Criado por:** [Seu Nome]  
-**Data:** Dezembro 2024  
+**Criado por:** Iran  
+**Data:** Dezembro 2025  
 **Versão:** 1.0
